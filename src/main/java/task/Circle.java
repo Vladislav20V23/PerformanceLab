@@ -17,7 +17,14 @@ public class Circle {
 
     public void setCentre() throws IOException {
 
-        Scanner scanner = new Scanner(new File("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task\\circle.txt"));
+
+        Scanner scannerSystem = new Scanner(System.in);
+        System.out.println("Укажите расположение файла с координатами и радиусом окружности:  ");
+        String argumentOne = scannerSystem.nextLine();
+
+
+        Scanner scanner = new Scanner(new File(argumentOne));
+//        C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task\\circle.txt
 
         List<Double> array = new ArrayList<>();
 
