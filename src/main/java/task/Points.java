@@ -21,7 +21,6 @@ public class Points {
 
 
 
-
     @Override
     public String toString() {
         return "Points{" +
@@ -29,4 +28,5 @@ public class Points {
                 ", point2D=" + point2D +
                 '}';
     }
+
 }

@@ -2,13 +2,14 @@ package task;
 
 
 import java.awt.geom.Point2D;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 
 public class Task2 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
 //        Point2D point2D = new Point2D.Double(1,1);
 //        System.out.println(point2D);
@@ -63,6 +64,7 @@ public class Task2 {
 
 
         Circle circle = new Circle();
+        circle.getCentre();
 //        System.out.println(circle);
         Points points = new Points();
 //        System.out.println(points);
