@@ -15,10 +15,10 @@ public class Task4 {
         Scanner scannerSystem = new Scanner(System.in);
         System.out.println("Укажите расположение файла c массивом целых чисел:  ");
         String argumentOne = scannerSystem.nextLine();
+//   C:\Users\Владислав\IdeaProjects\PerformanceLab\src\main\java\task4\nums.txt
 
 
         Scanner scanner = new Scanner(new File(argumentOne));
-//   C:\Users\Владислав\IdeaProjects\PerformanceLab\src\main\java\task4\nums.txt
 
         List<Long> array = new ArrayList<>();
 
@@ -26,22 +26,14 @@ public class Task4 {
             array.add(scanner.nextLong());
         }
 
-
-
-
-
-
-
-        Long[] nums2 = array.stream()
+        Long[] nums = array.stream()
                 .toArray(Long[]::new);;
 
-        System.out.println(Arrays.toString(nums2));
 
-        long[] nums = {-3, 1};
-        System.out.println(Arrays.toString(nums));
+//        System.out.println(Arrays.toString(nums));
 
-        long min = Collections.min(Arrays.stream(nums).boxed().collect(Collectors.toList()));
-        long max = Collections.max(Arrays.stream(nums).boxed().collect(Collectors.toList()));
+        long min = Collections.min(Arrays.stream(nums).sorted().collect(Collectors.toList()));
+        long max = Collections.max(Arrays.stream(nums).sorted().collect(Collectors.toList()));
 
         double average = 0;
         if (nums.length > 0) {
@@ -54,10 +46,10 @@ public class Task4 {
 
         long averageInt = Math.round(average);      //к нему приводим
 
-        System.out.println(min);
-        System.out.println(max);
-        System.out.println(average);
-        System.out.println(averageInt + "!!!!");
+//        System.out.println(min);
+//        System.out.println(max);
+//        System.out.println(average);
+//        System.out.println(averageInt + "!!!!");
 
 
 
