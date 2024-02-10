@@ -1,5 +1,7 @@
 package task3;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -7,14 +9,23 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class Values {
     public int id;
     public String value;
 
     public List<String> listString;
+
+    List<JSONObject> valuesList = new ArrayList<>();
+    List<JSONArray> JSONArrayValues = new ArrayList<>();
+    List<JSONObject> meaningValues = new ArrayList<>();
+
+
+//    Map<JSONObject, JSONArray[]> values = new HashMap<>();
+//    Map<String, Integer> valuesDetails = new HashMap<>();
+
+
 
 
     public void setValue() throws IOException, ParseException {
@@ -24,14 +35,20 @@ public class Values {
         JSONObject objectValues = (JSONObject) parser.parse(new FileReader("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\values.json"));
         JSONArray values = (JSONArray) objectValues.get("values");
 
+        valuesList.add(objectValues);
+        JSONArrayValues.add(values);
+
+
         for (Object c : values)
             {
-                JSONObject ss = (JSONObject) c;
+                JSONObject jsonObjectValues = (JSONObject) c;
 
-                long id = (long) ss.get("id");
+                meaningValues.add(jsonObjectValues);
+
+                long id = (long) jsonObjectValues.get("id");
                 System.out.println(id);
 
-                String value = (String) ss.get("value");
+                String value = (String) jsonObjectValues.get("value");
                 System.out.println(value);
 
                 System.out.println();
@@ -41,6 +58,14 @@ public class Values {
 
 //                System.out.println(c+"");
             }
+
+         System.out.println(meaningValues);
+
+        String lisMas = meaningValues.toString();           //String values
+        System.out.println(lisMas);
+
+
+
 
 
 
@@ -71,6 +96,9 @@ public class Values {
 
 
 
+
+
+
     }
 
 
@@ -91,5 +119,53 @@ public class Values {
                 ", value='" + value + '\'' +
                 ", listString=" + listString +
                 '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public List<String> getListString() {
+        return listString;
+    }
+
+    public void setListString(List<String> listString) {
+        this.listString = listString;
+    }
+
+    public List<JSONObject> getValuesList() {
+        return valuesList;
+    }
+
+    public void setValuesList(List<JSONObject> valuesList) {
+        this.valuesList = valuesList;
+    }
+
+    public List<JSONArray> getJSONArrayValues() {
+        return JSONArrayValues;
+    }
+
+    public void setJSONArrayValues(List<JSONArray> JSONArrayValues) {
+        this.JSONArrayValues = JSONArrayValues;
+    }
+
+    public List<JSONObject> getMeaningValues() {
+        return meaningValues;
+    }
+
+    public void setMeaningValues(List<JSONObject> meaningValues) {
+        this.meaningValues = meaningValues;
     }
 }
