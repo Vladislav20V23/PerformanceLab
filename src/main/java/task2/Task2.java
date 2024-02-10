@@ -1,4 +1,4 @@
-package task;
+package task2;
 
 
 import java.awt.geom.Point2D;
