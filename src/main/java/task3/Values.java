@@ -12,14 +12,13 @@ import java.io.*;
 import java.util.*;
 
 public class Values {
-    public int id;
+    public long id;
     public String value;
 
-    public List<String> listString;
 
-    List<JSONObject> valuesList = new ArrayList<>();
-    List<JSONArray> JSONArrayValues = new ArrayList<>();
-    List<JSONObject> meaningValues = new ArrayList<>();
+
+
+    public static List<Values> meaningValuesValues = new ArrayList<>();
 
 
 //    Map<JSONObject, JSONArray[]> values = new HashMap<>();
@@ -30,6 +29,9 @@ public class Values {
 
     public void setValue() throws IOException, ParseException {
 
+         List<JSONObject> valuesList = new ArrayList<>();
+          List<JSONArray> JSONArrayValues = new ArrayList<>();
+         List<JSONObject> meaningValues = new ArrayList<>();
 
         JSONParser parser = new JSONParser();
         JSONObject objectValues = (JSONObject) parser.parse(new FileReader("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\values.json"));
@@ -43,63 +45,45 @@ public class Values {
             {
                 JSONObject jsonObjectValues = (JSONObject) c;
 
+
+
                 meaningValues.add(jsonObjectValues);
 
-                long id = (long) jsonObjectValues.get("id");
-                System.out.println(id);
+
+                long id12 = (long) jsonObjectValues.get("id");
+//                System.out.println(id12);
 
                 String value = (String) jsonObjectValues.get("value");
-                System.out.println(value);
+//                System.out.println(value);
 
-                System.out.println();
+                Values valuesJSON = new Values(id12,value);
+                meaningValuesValues.add(valuesJSON);
+//                System.out.println("meaningValuesValues = "+meaningValuesValues);
 
 
 
 
-//                System.out.println(c+"");
             }
 
-         System.out.println(meaningValues);
-
-        String lisMas = meaningValues.toString();           //String values
-        System.out.println(lisMas);
+        System.out.println("meaningValuesValues = "+meaningValuesValues);
 
 
-
-
-
-
-//        JSONParser parser = new JSONParser();
-//        JSONArray a = (JSONArray) parser.parse(new FileReader("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\values2.json"));
-//
-//        for (Object o : a)
-//        {
-//            JSONObject person = (JSONObject) o;
-//
-//            String name = (String) person.get("name");
-//            System.out.println(name);
-//
-//            String city = (String) person.get("city");
-//            System.out.println(city);
-//
-//            String job = (String) person.get("job");
-//            System.out.println(job);
-//
-//            JSONArray cars = (JSONArray) person.get("cars");
-//
-//            for (Object c : cars)
-//            {
-//                System.out.println(c+"");
-//            }
-//        }
+//        String lisMas = meaningValues.toString();           //String values
+//        System.out.println(lisMas);
 
 
 
 
+        System.out.println();
 
 
 
     }
+
+
+
+
+
 
 
 
@@ -107,21 +91,13 @@ public class Values {
 
         Values a = new Values();
         a.setValue();
+        System.out.println("a.meaningValuesValues.get(0).getId(); = " + a.meaningValuesValues.get(0).getId() +" "+ a.meaningValuesValues.get(0).getValue());
 
 
     }
 
 
-    @Override
-    public String toString() {
-        return "Values{" +
-                "id=" + id +
-                ", value='" + value + '\'' +
-                ", listString=" + listString +
-                '}';
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -137,35 +113,22 @@ public class Values {
         this.value = value;
     }
 
-    public List<String> getListString() {
-        return listString;
+
+
+
+    public Values(long id, String value) {
+        this.id = id;
+        this.value = value;
     }
 
-    public void setListString(List<String> listString) {
-        this.listString = listString;
+    public Values() {
     }
 
-    public List<JSONObject> getValuesList() {
-        return valuesList;
-    }
-
-    public void setValuesList(List<JSONObject> valuesList) {
-        this.valuesList = valuesList;
-    }
-
-    public List<JSONArray> getJSONArrayValues() {
-        return JSONArrayValues;
-    }
-
-    public void setJSONArrayValues(List<JSONArray> JSONArrayValues) {
-        this.JSONArrayValues = JSONArrayValues;
-    }
-
-    public List<JSONObject> getMeaningValues() {
-        return meaningValues;
-    }
-
-    public void setMeaningValues(List<JSONObject> meaningValues) {
-        this.meaningValues = meaningValues;
+    @Override
+    public String toString() {
+        return "Values{" +
+                "id=" + id +
+                ", value='" + value + '\'' +
+                '}';
     }
 }

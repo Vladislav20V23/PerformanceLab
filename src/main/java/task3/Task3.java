@@ -19,6 +19,8 @@ public class Task3 {
 
         Values values = new Values();
         values.setValue();
+        Report report = new Report();
+        report.valuesToJSON();
 
     }
 
