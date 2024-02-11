@@ -38,31 +38,6 @@ public class Tasta {
         for (Object c : tests) {
             JSONObject jsonObjectValues = (JSONObject) c;
 
-            //---------------------
-
-            JSONArray values = (JSONArray) jsonObjectValues.get("values");
-//            System.out.println(values);
-            if( values !=  null) {
-                JSONArrayValues.add(values);
-
-                for (Object c1 : values) {
-                    JSONObject jsonObjectValues1 = (JSONObject) c1;
-                    meaningValues.add(jsonObjectValues1);
-
-
-                    long id12 = (long) jsonObjectValues1.get("id");
-//                System.out.println(id12);
-
-                    String title = (String) jsonObjectValues1.get("title");
-
-                    String value = (String) jsonObjectValues1.get("value");
-//                System.out.println(value);
-
-                    Tasta valuesJSON = new Tasta(id12, title, value);
-                    meaningValuesTasta.add(valuesJSON);
-                }
-            }
-            //----------------
 
             meaningValues.add(jsonObjectValues);
 
@@ -75,9 +50,51 @@ public class Tasta {
             String value = (String) jsonObjectValues.get("value");
 //                System.out.println(value);
 
-            Tasta valuesJSON = new Tasta(id12, title, value);
-            meaningValuesTasta.add(valuesJSON);
+
+
+            //---------------------
+
+            JSONArray values = (JSONArray) jsonObjectValues.get("values");
+            List<Tasta> tastaList = new ArrayList<>();
+//            System.out.println(values);
+            if( values !=  null) {
+                JSONArrayValues.add(values);
+
+                for (Object c1 : values) {
+                    JSONObject jsonObjectValues1 = (JSONObject) c1;
+                    meaningValues.add(jsonObjectValues1);
+
+
+                    long id121 = (long) jsonObjectValues1.get("id");
+//                System.out.println(id12);
+
+                    String title1 = (String) jsonObjectValues1.get("title");
+
+                    String value1 = (String) jsonObjectValues1.get("value");
+//                System.out.println(value);
+
+
+
+
+
+
+                    Tasta valuesJSON = new Tasta(id121, title1, value1);
+                    tastaList.add(valuesJSON);
+
+                }
+            }
+            //----------------
+
+
+            if( values ==  null) {
+                Tasta valuesJSON = new Tasta(id12, title, value);
+                meaningValuesTasta.add(valuesJSON);
 //                System.out.println("meaningValuesValues = "+meaningValuesValues);
+            } else{
+                TastaMore tastaMore = new TastaMore(id12, title, value, tastaList);
+                meaningValuesTasta.add(tastaMore);
+//                System.out.println(tastaMore);
+            }
 
 
         }

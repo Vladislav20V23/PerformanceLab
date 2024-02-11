@@ -3,7 +3,7 @@ package task3;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TastaMore {
+public class TastaMore extends Tasta{
 
     public long id;
     public String title;
