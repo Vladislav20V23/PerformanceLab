@@ -29,9 +29,9 @@ public class Values {
 
     public void setValue() throws IOException, ParseException {
 
-         List<JSONObject> valuesList = new ArrayList<>();
-          List<JSONArray> JSONArrayValues = new ArrayList<>();
-         List<JSONObject> meaningValues = new ArrayList<>();
+         List<JSONObject> valuesList = new ArrayList<>();                   //Удалить
+          List<JSONArray> JSONArrayValues = new ArrayList<>();              //Удалить
+         List<JSONObject> meaningValues = new ArrayList<>();                //Удалить
 
         JSONParser parser = new JSONParser();
         JSONObject objectValues = (JSONObject) parser.parse(new FileReader("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\values.json"));
@@ -62,7 +62,6 @@ public class Values {
 
 
 
-
             }
 
         System.out.println("meaningValuesValues = "+meaningValuesValues);
@@ -74,7 +73,6 @@ public class Values {
 
 
 
-        System.out.println();
 
 
 

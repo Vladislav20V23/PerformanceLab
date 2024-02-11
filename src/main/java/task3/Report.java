@@ -18,7 +18,7 @@ public class Report {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
 
-//        String json = ow.writeValueAsString(meaningValuesValues.get(0));
+//        String json = ow.writeValueAsString(meaningValuesValues.get(0));      // список всех Values в виде String
 //        System.out.println(json);
                 String json = ow.writeValueAsString(meaningValuesValues);
 
@@ -29,10 +29,6 @@ public class Report {
     }
 
     public static void main(String[] args) throws IOException, ParseException {
-
-
-
-
 
 
 
