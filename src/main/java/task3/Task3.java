@@ -139,7 +139,7 @@ class Report {                          // Запись в файл
 
 
         Scanner scannerSystem = new Scanner(System.in);
-        System.out.println("Укажите расположение файла report.json :  ");
+        System.out.println("Укажите путь для сохранения файла report.json :  ");
         String argumentOne = scannerSystem.nextLine();
         BufferedWriter bw=new BufferedWriter(new FileWriter(argumentOne));
 
