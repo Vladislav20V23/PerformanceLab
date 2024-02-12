@@ -34,8 +34,14 @@ public class Values {
          List<JSONObject> meaningValues = new ArrayList<>();                //Удалить
 
         JSONParser parser = new JSONParser();
-        JSONObject objectValues = (JSONObject) parser.parse(new FileReader("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\values.json"));
+
+        Scanner scannerSystem = new Scanner(System.in);
+        System.out.println("Укажите расположение файла values.jso:  ");
+        String argumentOne = scannerSystem.nextLine();
+        JSONObject objectValues = (JSONObject) parser.parse(new FileReader(argumentOne));
         JSONArray values = (JSONArray) objectValues.get("values");
+//C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\values.json
+
 
         valuesList.add(objectValues);
         JSONArrayValues.add(values);
@@ -66,7 +72,7 @@ public class Values {
 
         ValuesArray valuesArray = new ValuesArray(meaningValuesValues);
 
-        System.out.println(valuesArray);
+//        System.out.println(valuesArray);              //РЕЗУЛЬТАТ
 
 
         String lisMas = meaningValues.toString();           //String values

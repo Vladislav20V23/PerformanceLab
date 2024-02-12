@@ -64,6 +64,11 @@ public class TestMore extends Test {
         this.title = title;
         this.values = meaningValuesTastaMore;
     }
+    public TestMore(List<Test> meaningValuesTastaMore) {
+        this.values = meaningValuesTastaMore;
+    }
+
+
 
 
 

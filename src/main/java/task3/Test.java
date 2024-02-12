@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Test {
 
@@ -30,9 +31,14 @@ public class Test {
         List<Test> tastaList4 = new ArrayList<>();
 
         JSONParser parser = new JSONParser();
-        JSONObject objectValues = (JSONObject) parser.parse(new FileReader("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\tests.json"));
-        JSONArray testsJSONArray = (JSONArray) objectValues.get("tests");
 
+        Scanner scannerSystem = new Scanner(System.in);
+        System.out.println("Укажите расположение файла tests.json :  ");
+        String argumentOne = scannerSystem.nextLine();
+
+        JSONObject objectValues = (JSONObject) parser.parse(new FileReader(argumentOne));
+        JSONArray testsJSONArray = (JSONArray) objectValues.get("tests");
+        //C:\Users\Владислав\IdeaProjects\PerformanceLab\src\main\java\task3\tests.json
 
 //        ObjectMapper mapper = new ObjectMapper();                 //в текст
 //        String json = mapper.writeValueAsString(objectValues);
@@ -203,7 +209,7 @@ public class Test {
 //        System.out.println(meaningValuesTasta);
 
         TastaStart tastaStart = new TastaStart(meaningValuesTasta);
-        System.out.println(tastaStart);
+//        System.out.println(tastaStart);          //   РЕЗУЛЬТАТ
     }
 
     public static void main(String[] args) throws IOException, ParseException {
