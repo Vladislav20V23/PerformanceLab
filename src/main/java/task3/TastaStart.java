@@ -3,30 +3,30 @@ package task3;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TastaStart extends Tasta {
+public class TastaStart extends Test {
 
-    public List<Tasta> tasta = new ArrayList<>();
+    public List<Test> tests = new ArrayList<>();
 
     public TastaStart() {
     }
 
 
-    public TastaStart(List<Tasta> tasta) {
-        this.tasta = tasta;
+    public TastaStart(List<Test> tasta) {
+        this.tests = tasta;
     }
 
-    public List<Tasta> getTasta() {
-        return tasta;
+    public List<Test> getTests() {
+        return tests;
     }
 
-    public void setTasta(List<Tasta> tasta) {
-        this.tasta = tasta;
+    public void setTests(List<Test> tests) {
+        this.tests = tests;
     }
 
     @Override
     public String toString() {
         return "TastaStart{" +
-                "tasta=" + tasta +
+                "tests=" + tests +
                 '}';
     }
 }

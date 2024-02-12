@@ -1,5 +1,7 @@
 package task3;
 
+import com.google.gson.Gson;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -10,13 +12,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tasta {
+public class Test {
 
     public long id;
     public String title;
     public String value;
 
-    public static List<Tasta> meaningValuesTasta = new ArrayList<>();
+    public static List<Test> meaningValuesTasta = new ArrayList<>();
 
     public void setValue() throws IOException, ParseException {
 
@@ -24,18 +26,24 @@ public class Tasta {
         List<JSONArray> JSONArrayValues = new ArrayList<>();              //Удалить
         List<JSONObject> meaningValues = new ArrayList<>();                //Удалить
 
+        List<Test> tastaList3 = new ArrayList<>();
 
 
         JSONParser parser = new JSONParser();
         JSONObject objectValues = (JSONObject) parser.parse(new FileReader("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\tests.json"));
-        JSONArray tests = (JSONArray) objectValues.get("tests");
+        JSONArray testsJSONArray = (JSONArray) objectValues.get("tests");
+
+
+//        ObjectMapper mapper = new ObjectMapper();                 //в текст
+//        String json = mapper.writeValueAsString(objectValues);
+
 
 
         valuesList.add(objectValues);
-        JSONArrayValues.add(tests);
+        JSONArrayValues.add(testsJSONArray);
 
 
-        for (Object c : tests) {
+        for (Object c : testsJSONArray) {
             JSONObject jsonObjectValues = (JSONObject) c;
 
 
@@ -55,7 +63,7 @@ public class Tasta {
             //---------------------
 
             JSONArray values = (JSONArray) jsonObjectValues.get("values");
-            List<Tasta> tastaList = new ArrayList<>();
+            List<Test> tastaList = new ArrayList<>();
 //            System.out.println(values);
             if( values !=  null) {
                 JSONArrayValues.add(values);
@@ -77,22 +85,82 @@ public class Tasta {
 
 
 
+                    //---------------------
 
-                    Tasta valuesJSON = new Tasta(id121, title1, value1);
-                    tastaList.add(valuesJSON);
+                    JSONArray values3 = (JSONArray) jsonObjectValues1.get("values");
+                    tastaList3 = new ArrayList<>();
+//            System.out.println(values3);
+                    if( values3 !=  null) {
+//                        JSONArrayValues.add(values3);
+//
+                        for (Object c3 : values3) {
+                            JSONObject jsonObjectValues3 = (JSONObject) c3;
+//                            meaningValues.add(jsonObjectValues3);
+//
+//
+                            long id3 = (long) jsonObjectValues3.get("id");
+////                System.out.println(id12);
+//
+                            String title3 = (String) jsonObjectValues3.get("title");
+//
+                            String value3 = (String) jsonObjectValues3.get("value");
+////                System.out.println(value);
+//
+//
+//
+//
 
+                            Test valuesJSON = new Test(id3, title3, value3);
+                            tastaList3.add(valuesJSON);               //!!!!!!!!
+
+//                            TestMore tastaMore = new TestMore(id121, title1, value1, tastaList3);
+//                            tastaList3.add(tastaMore);
+
+
+                            System.out.println("valuesJSON = " + valuesJSON);
+//
+                        }
+                    }
+                    //----------------
+
+
+
+
+                    if(values3 == null) {
+                        Test valuesJSON = new Test(id121, title1, value1);
+                        tastaList.add(valuesJSON);
+//                    System.out.println("tastaList = " + tastaList);
+                    } else {
+                        TestMore valuesJSON = new TestMore(id121, title1, value1, tastaList3);
+                        tastaList.add(valuesJSON);
+                    }
                 }
             }
             //----------------
 
 
             if( values ==  null) {
-                Tasta valuesJSON = new Tasta(id12, title, value);
-                meaningValuesTasta.add(valuesJSON);
+                Test testOne = new Test(id12, title, value);
+                meaningValuesTasta.add(testOne);
 //                System.out.println("meaningValuesValues = "+meaningValuesValues);
+                System.out.println("=-==-=-=-=-=-=-=-=-=");
+
             } else{
-                TastaMore tastaMore = new TastaMore(id12, title, value, tastaList);
-                meaningValuesTasta.add(tastaMore);
+
+                if(tastaList3.size() == 0) {
+                    TestMore testTwo = new TestMore(id12, title, value, tastaList);
+                    meaningValuesTasta.add(testTwo);
+                                    System.out.println("++++++");
+
+                } else {
+                    TestMore testTree = new TestMore(id12, title, value, tastaList);
+                    meaningValuesTasta.add(testTree);
+                                     System.out.println("----------");
+//                    tastaList3.removeAll(tastaList3);
+
+                }
+
+
 //                System.out.println(tastaMore);
             }
 
@@ -105,8 +173,11 @@ public class Tasta {
     }
 
     public static void main(String[] args) throws IOException, ParseException {
-        Tasta tasta = new Tasta();
+        Test tasta = new Test();
         tasta.setValue();
+
+
+
 
 
     }
@@ -144,18 +215,18 @@ public class Tasta {
         this.title = title;
     }
 
-    public Tasta(long id, String title, String value) {
+    public Test(long id, String title, String value) {
         this.id = id;
         this.title = title;
         this.value = value;
     }
 
-    public Tasta() {
+    public Test() {
     }
 
     @Override
     public String toString() {
-        return "Tasta{" +
+        return "Test{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", value='" + value + '\'' +

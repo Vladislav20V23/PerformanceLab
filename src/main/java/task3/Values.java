@@ -67,8 +67,12 @@ public class Values {
         System.out.println("meaningValuesValues = "+meaningValuesValues);
 
 
-//        String lisMas = meaningValues.toString();           //String values
-//        System.out.println(lisMas);
+        String lisMas = meaningValues.toString();           //String values
+//        System.out.println("---------------" + lisMas);
+        Gson gson = new Gson();
+        Values[] values22 =gson.fromJson(lisMas, Values[].class);
+//        System.out.println(Arrays.toString(values22));
+//        System.out.println(values22[4]);
 
 
 
@@ -89,7 +93,7 @@ public class Values {
 
         Values a = new Values();
         a.setValue();
-        System.out.println("a.meaningValuesValues.get(0).getId(); = " + a.meaningValuesValues.get(0).getId() +" "+ a.meaningValuesValues.get(0).getValue());
+//        System.out.println("a.meaningValuesValues.get(0).getId(); = " + a.meaningValuesValues.get(0).getId() +" "+ a.meaningValuesValues.get(0).getValue());
 
 
     }

@@ -3,13 +3,13 @@ package task3;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TastaMore extends Tasta{
+public class TestMore extends Test {
 
     public long id;
     public String title;
     public String value;
 
-    public List<Tasta> meaningValuesTastaMore = new ArrayList<>();
+    public List<Test> values = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -35,37 +35,37 @@ public class TastaMore extends Tasta{
         this.value = value;
     }
 
-    public List<Tasta> getMeaningValuesTastaMore() {
-        return meaningValuesTastaMore;
+    public List<Test> getValues() {
+        return values;
     }
 
-    public void setMeaningValuesTastaMore(List<Tasta> meaningValuesTastaMore) {
-        this.meaningValuesTastaMore = meaningValuesTastaMore;
+    public void setValues(List<Test> values) {
+        this.values = values;
     }
 
-    public TastaMore() {
+    public TestMore() {
     }
 
-    public TastaMore(long id, String title, String value) {
+    public TestMore(long id, String title, String value) {
         this.id = id;
         this.title = title;
         this.value = value;
     }
 
-    public TastaMore(long id, String title, String value, List<Tasta> meaningValuesTastaMore) {
+    public TestMore(long id, String title, String value, List<Test> meaningValuesTastaMore) {
         this.id = id;
         this.title = title;
         this.value = value;
-        this.meaningValuesTastaMore = meaningValuesTastaMore;
+        this.values = meaningValuesTastaMore;
     }
 
     @Override
     public String toString() {
-        return "TastaMore{" +
+        return "TestMore{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", value='" + value + '\'' +
-                ", meaningValuesTastaMore=" + meaningValuesTastaMore +
+                ", values=" + values +
                 '}';
     }
 }
