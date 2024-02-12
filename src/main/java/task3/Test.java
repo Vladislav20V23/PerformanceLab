@@ -140,10 +140,12 @@ public class Test {
 
                             if(values4 == null) {
                                 Test valuesJSON = new Test(id3, title3, value3);
-                                tastaList3.add(valuesJSON);               //!!!!!!!!
-                            } else {
-                                TestMore valuesJSON = new TestMore(id3, title3, value3, tastaList4);
                                 tastaList3.add(valuesJSON);
+                            } else {
+                                TestMoreMini valuesJSON = new TestMoreMini(id3, title3, tastaList4);
+                                tastaList3.add(valuesJSON);         //TUT
+//                                System.out.println(valuesJSON);
+
                             }
 
 //                            TestMore tastaMore = new TestMore(id121, title1, value1, tastaList3);
@@ -175,19 +177,19 @@ public class Test {
                 Test testOne = new Test(id12, title, value);
                 meaningValuesTasta.add(testOne);
 //                System.out.println("meaningValuesValues = "+meaningValuesValues);
-                System.out.println("=-==-=-=-=-=-=-=-=-=");
+//                System.out.println("=-==-=-=-=-=-=-=-=-=");
 
             } else{
 
                 if(tastaList3.size() == 0) {
                     TestMore testTwo = new TestMore(id12, title, value, tastaList);
                     meaningValuesTasta.add(testTwo);
-                                    System.out.println("++++++");
+//                                    System.out.println("++++++");
 
                 } else {
                     TestMore testTree = new TestMore(id12, title, value, tastaList);
                     meaningValuesTasta.add(testTree);
-                                     System.out.println("----------");
+//                                     System.out.println("----------");
 //                    tastaList3.removeAll(tastaList3);
 
                 }
@@ -245,6 +247,14 @@ public class Test {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public static List<Test> getMeaningValuesTasta() {
+        return meaningValuesTasta;
+    }
+
+    public static void setMeaningValuesTasta(List<Test> meaningValuesTasta) {
+        Test.meaningValuesTasta = meaningValuesTasta;
     }
 
     public Test(long id, String title, String value) {

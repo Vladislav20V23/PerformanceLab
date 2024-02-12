@@ -59,6 +59,14 @@ public class TestMore extends Test {
         this.values = meaningValuesTastaMore;
     }
 
+    public TestMore(long id, String title, List<Test> meaningValuesTastaMore) {
+        this.id = id;
+        this.title = title;
+        this.values = meaningValuesTastaMore;
+    }
+
+
+
     @Override
     public String toString() {
         return "TestMore{" +

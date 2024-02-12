@@ -64,13 +64,15 @@ public class Values {
 
             }
 
-        System.out.println("meaningValuesValues = "+meaningValuesValues);
+        ValuesArray valuesArray = new ValuesArray(meaningValuesValues);
+
+        System.out.println(valuesArray);
 
 
         String lisMas = meaningValues.toString();           //String values
 //        System.out.println("---------------" + lisMas);
-        Gson gson = new Gson();
-        Values[] values22 =gson.fromJson(lisMas, Values[].class);
+//        Gson gson = new Gson();
+//        Values[] values22 =gson.fromJson(lisMas, Values[].class);
 //        System.out.println(Arrays.toString(values22));
 //        System.out.println(values22[4]);
 
@@ -124,6 +126,14 @@ public class Values {
     }
 
     public Values() {
+    }
+
+    public static List<Values> getMeaningValuesValues() {
+        return meaningValuesValues;
+    }
+
+    public static void setMeaningValuesValues(List<Values> meaningValuesValues) {
+        Values.meaningValuesValues = meaningValuesValues;
     }
 
     @Override
