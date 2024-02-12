@@ -27,7 +27,7 @@ public class Test {
         List<JSONObject> meaningValues = new ArrayList<>();                //Удалить
 
         List<Test> tastaList3 = new ArrayList<>();
-
+        List<Test> tastaList4 = new ArrayList<>();
 
         JSONParser parser = new JSONParser();
         JSONObject objectValues = (JSONObject) parser.parse(new FileReader("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\tests.json"));
@@ -43,7 +43,7 @@ public class Test {
         JSONArrayValues.add(testsJSONArray);
 
 
-        for (Object c : testsJSONArray) {
+        for (Object c : testsJSONArray) {                       //первый проход
             JSONObject jsonObjectValues = (JSONObject) c;
 
 
@@ -60,9 +60,9 @@ public class Test {
 
 
 
-            //---------------------
+            //------------------второй заход   начало
 
-            JSONArray values = (JSONArray) jsonObjectValues.get("values");
+            JSONArray values = (JSONArray) jsonObjectValues.get("values");               //второй проход
             List<Test> tastaList = new ArrayList<>();
 //            System.out.println(values);
             if( values !=  null) {
@@ -85,43 +85,75 @@ public class Test {
 
 
 
-                    //---------------------
+                     //------------------третий заход   начало
 
-                    JSONArray values3 = (JSONArray) jsonObjectValues1.get("values");
+                    JSONArray values3 = (JSONArray) jsonObjectValues1.get("values");             //третий проход
                     tastaList3 = new ArrayList<>();
 //            System.out.println(values3);
                     if( values3 !=  null) {
 //                        JSONArrayValues.add(values3);
-//
+
                         for (Object c3 : values3) {
                             JSONObject jsonObjectValues3 = (JSONObject) c3;
 //                            meaningValues.add(jsonObjectValues3);
-//
-//
+
+
                             long id3 = (long) jsonObjectValues3.get("id");
-////                System.out.println(id12);
+//                System.out.println(id12);
 //
                             String title3 = (String) jsonObjectValues3.get("title");
 //
                             String value3 = (String) jsonObjectValues3.get("value");
-////                System.out.println(value);
-//
-//
-//
-//
+//                System.out.println(value);
 
-                            Test valuesJSON = new Test(id3, title3, value3);
-                            tastaList3.add(valuesJSON);               //!!!!!!!!
+
+                            //------------------четвертый заход   начало
+
+                            JSONArray values4 = (JSONArray) jsonObjectValues3.get("values");             //4 проход
+                            tastaList4 = new ArrayList<>();
+
+                            if( values4 !=  null) {
+
+                                for (Object c4 : values4) {
+
+                                    JSONObject jsonObjectValues4 = (JSONObject) c4;
+
+                                    long id4 = (long) jsonObjectValues4.get("id");
+//                System.out.println(id12);
+//
+                                    String title4 = (String) jsonObjectValues4.get("title");
+//
+                                    String value4 = (String) jsonObjectValues4.get("value");
+//                System.out.println(value);
+
+                                    Test valuesJSON = new Test(id4, title4, value4);
+                                    tastaList4.add(valuesJSON);
+
+                                }
+
+
+
+                            }
+
+
+                                        //------------------четвертый заход конец
+
+                            if(values4 == null) {
+                                Test valuesJSON = new Test(id3, title3, value3);
+                                tastaList3.add(valuesJSON);               //!!!!!!!!
+                            } else {
+                                TestMore valuesJSON = new TestMore(id3, title3, value3, tastaList4);
+                                tastaList3.add(valuesJSON);
+                            }
 
 //                            TestMore tastaMore = new TestMore(id121, title1, value1, tastaList3);
 //                            tastaList3.add(tastaMore);
 
 
-                            System.out.println("valuesJSON = " + valuesJSON);
-//
+
                         }
                     }
-                    //----------------
+                    //------------------третий заход конец
 
 
 
@@ -136,7 +168,7 @@ public class Test {
                     }
                 }
             }
-            //----------------
+            ///------------------второй заход конец
 
 
             if( values ==  null) {
