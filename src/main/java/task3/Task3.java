@@ -35,59 +35,79 @@ public class Task3 {
 
 
 
-
-
         for(int x=0; x<valuesArray.getValuesList().size();x++){                         //чтение Values
 //            System.out.println( "id values " + valuesArray.getValuesList().get(x).getId());
 
-            for(int y=0; y<tastaStart.getTests().size();y++) {                       //чтение tastaStart
+            for(int y=0; y<tastaStart.getTests().size();y++) {                       //чтение tests и сверка ключь:значение //перебор верхнего уровня
 
                 Test test1 = (Test) tastaStart.tests.get(y);
 
-                TestMore testMore = (TestMore) tastaStart.tests.get(2);     //НЕТ ЦЫКЛА...
-                TestMore testMoreTwo = (TestMore) tastaStart.tests.get(3);     //НЕТ ЦЫКЛА...
 
-                for (int b = 0; b < testMoreTwo.getValues().size(); b++) {
-                    Test test2 = (Test) testMoreTwo.getValues().get(b);
-                    for (int t = 0; t < testMore.values.size(); t++) {
-                        TestMore testMore1 = (TestMore) testMore.values.get(t);
+                try {
+                    if (((TestMore) tastaStart.tests.get(y)).values.size() != 0 || ((TestMore) tastaStart.tests.get(y)).getValues().size() != 0) {
 
-                        TestMoreMini testMoreMini = (TestMoreMini) testMore1.getValues().get(0);
+                        TestMore TestMoreGo = (TestMore) tastaStart.tests.get(y);
 
-                        for (int r = 0; r < testMore.values.size(); r++) {
+                        for (int b = 0; b < TestMoreGo.getValues().size(); b++) {
+//                    System.out.println(testMoreTwo.getValues());
+                            Test test2 = (Test) TestMoreGo.getValues().get(b);
 
-                            Test testFinal = (Test) testMoreMini.getValues().get(r);
+                            for (int t = 0; t < TestMoreGo.values.size(); t++) {
+                                TestMore testMore1 = (TestMore) TestMoreGo.values.get(t);
+
+                                TestMoreMini testMoreMini = (TestMoreMini) testMore1.getValues().get(0);        //НЕТ ЦЫКЛА...
+
+                                for (int r = 0; r < TestMoreGo.values.size(); r++) {
+
+                                    Test testFinal = (Test) testMoreMini.getValues().get(r);
 
 
-                            if ((Objects.equals(valuesArray.getValuesList().get(x).getId(), test1.getId()) == true)) {                //проверка присвоения
+                                    if ((Objects.equals(valuesArray.getValuesList().get(x).getId(), testMore1.getId()) == true)) {
+                                        testMore1.setValue(valuesArray.getValuesList().get(x).getValue());
 
-                                test1.setValue(valuesArray.getValuesList().get(x).getValue());
+                                    }
 
+                                    if ((Objects.equals(valuesArray.getValuesList().get(x).getId(), testMoreMini.getId()) == true)) {
+                                        // testMoreMini его нет т.к. объект не содержит value
+                                    }
+
+                                    if ((Objects.equals(valuesArray.getValuesList().get(x).getId(), testFinal.getId()) == true)) {
+                                        testFinal.setValue(valuesArray.getValuesList().get(x).getValue());
+
+                                    }
+
+                                    if ((Objects.equals(valuesArray.getValuesList().get(x).getId(), test2.getId()) == true)) {
+                                        test2.setValue(valuesArray.getValuesList().get(x).getValue());
+
+                                    }
+                                }
                             }
+                        }
 
-                            if ((Objects.equals(valuesArray.getValuesList().get(x).getId(), testMore1.getId()) == true)) {
-                                testMore1.setValue(valuesArray.getValuesList().get(x).getValue());
+                    }
+                }catch (Exception ex){}
 
-                            }
 
-                            if ((Objects.equals(valuesArray.getValuesList().get(x).getId(), testMoreMini.getId()) == true)) {
+                try {
+                    TestMore TestMoreGo = (TestMore) tastaStart.tests.get(y);
 
-                            }
+                    for (int b = 0; b < TestMoreGo.getValues().size(); b++) {
+//                   System.out.println(testMoreTwo.getValues());
+                        Test test2 = (Test) TestMoreGo.getValues().get(b);
 
-                            if ((Objects.equals(valuesArray.getValuesList().get(x).getId(), testFinal.getId()) == true)) {
-                                testFinal.setValue(valuesArray.getValuesList().get(x).getValue());
-
-                            }
-
-                            if ((Objects.equals(valuesArray.getValuesList().get(x).getId(), test2.getId()) == true)) {
-                                test2.setValue(valuesArray.getValuesList().get(x).getValue());
-
-                            }
-
+                        if ((Objects.equals(valuesArray.getValuesList().get(x).getId(), test2.getId()) == true)) {
+                            test2.setValue(valuesArray.getValuesList().get(x).getValue());
 
                         }
                     }
+                }catch (Exception ec){}
+
+                if ((Objects.equals(valuesArray.getValuesList().get(x).getId(), test1.getId()) == true)) {                //проверка присвоения
+
+                    test1.setValue(valuesArray.getValuesList().get(x).getValue());
+
                 }
+
             }
         }
 
@@ -135,16 +155,16 @@ class Report {                          // Запись в файл
 //        String json = ow.writeValueAsString(meaningValuesValues.get(0));      // список всех Values в виде String
 //        System.out.println(json);
 //        System.out.println(tastaStart);
-        String json = ow.writeValueAsString(tastaStart);     //!!!!
+        String json = ow.writeValueAsString(tastaStart);
 
 
-        Scanner scannerSystem = new Scanner(System.in);
+        Scanner scannerSystem = new Scanner(System.in);                             //ПЕРЕДАЧА АРГУМЕНТА в ручную
         System.out.println("Укажите путь для сохранения файла report.json :  ");
         String argumentOne = scannerSystem.nextLine();
         BufferedWriter bw=new BufferedWriter(new FileWriter(argumentOne));
 
 
-
+        //для тестирования(аргумент)
 //        BufferedWriter bw=new BufferedWriter(new FileWriter("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\report.json"));
         bw.append(json);
         bw.close();
@@ -173,13 +193,14 @@ class Values {                          // ПЕРЕОБРАЗОВАНИЕ JSON i
         JSONParser parser = new JSONParser();
 
 
-        Scanner scannerSystem = new Scanner(System.in);
+        Scanner scannerSystem = new Scanner(System.in);                   //ПЕРЕДАЧА АРГУМЕНТА в ручную
         System.out.println("Укажите расположение файла values.jso:  ");
         String argumentOne = scannerSystem.nextLine();
         JSONObject objectValues = (JSONObject) parser.parse(new FileReader(argumentOne));
         JSONArray values = (JSONArray) objectValues.get("values");
 
-       /* JSONObject objectValues = (JSONObject) parser.parse(new FileReader("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\values.json"));
+        //для тестирования(аргумент)
+        /*JSONObject objectValues = (JSONObject) parser.parse(new FileReader("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\values.json"));
         JSONArray values = (JSONArray) objectValues.get("values");*/
 
 //        valuesList.add(objectValues);
@@ -287,7 +308,7 @@ class ValuesArray extends Values{                       //вспомогател
     }
 }
 
-class TastaStart  {                 // первый объект на переобразование JSON
+class TastaStart  {                 // первый объект на переобразование JSON (самый верхний)
 
     public List<Object> tests = new ArrayList<>();
 
@@ -440,7 +461,7 @@ class TestMoreMini  {                   // третий объект(без зн
 }
 
 
-class Test {
+class Test {                //основной объект на переобразование JSON (конечный)
 
     public long id;
     public String title;
@@ -458,7 +479,7 @@ class Test {
 
         JSONParser parser = new JSONParser();
 
-        Scanner scannerSystem = new Scanner(System.in);
+        Scanner scannerSystem = new Scanner(System.in);           //ПЕРЕДАЧА АРГУМЕНТА в ручную
         System.out.println("Укажите расположение файла tests.json :  ");
         String argumentOne = scannerSystem.nextLine();
 
@@ -466,7 +487,8 @@ class Test {
         JSONArray testsJSONArray = (JSONArray) objectValues.get("tests");
         //C:\Users\Владислав\IdeaProjects\PerformanceLab\src\main\java\task3\tests.json
 
-        /*JSONObject objectValues = (JSONObject) parser.parse(new FileReader("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\tests.json"));
+            //аргумент для тестирования
+       /* JSONObject objectValues = (JSONObject) parser.parse(new FileReader("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\tests.json"));
         JSONArray testsJSONArray = (JSONArray) objectValues.get("tests");*/
 
 //        ObjectMapper mapper = new ObjectMapper();                 //в текст
