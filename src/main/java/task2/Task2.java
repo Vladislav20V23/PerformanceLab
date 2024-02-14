@@ -10,10 +10,16 @@ import java.util.Scanner;
 
 
 public class Task2 {
-
+    static String argumentOne;
+    static String argumentTwo;
     public static void main(String[] args) throws IOException {
 
 // пример пути к файлу C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task\\points.txt
+
+        argumentOne = args[0];      //считывает первый аргумент
+        argumentTwo = args[1];      //считывает two аргумент
+
+
 
         Circle circle = new Circle();
         circle.setCentre();
@@ -51,9 +57,12 @@ class Circle {
     public void setCentre() throws IOException {
 
 
-        Scanner scannerSystem = new Scanner(System.in);
+       /* Scanner scannerSystem = new Scanner(System.in);           //для ручного ввода
         System.out.println("Укажите расположение файла с координатами и радиусом окружности:  ");
-        String argumentOne = scannerSystem.nextLine();
+        String argumentOne = scannerSystem.nextLine();*/
+
+        String argumentOne = Task2.argumentOne;
+
 
 
         Scanner scanner = new Scanner(new File(argumentOne));
@@ -87,9 +96,12 @@ class Points {
 
     public void setPoint2Ds() throws IOException {
 
-        Scanner scannerSystem = new Scanner(System.in);
+
+      /*  Scanner scannerSystem = new Scanner(System.in);
         System.out.println("Укажите расположение файла с координатами точек : ");
-        String argumentTwo = scannerSystem.nextLine();
+        String argumentTwo = scannerSystem.nextLine();*/
+
+        String argumentTwo = Task2.argumentTwo;
 
         Scanner scanner = new Scanner(new File(argumentTwo));
 //        C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task\\points.txt

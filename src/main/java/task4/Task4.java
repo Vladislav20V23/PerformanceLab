@@ -11,12 +11,13 @@ public class Task4 {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-
-        Scanner scannerSystem = new Scanner(System.in);
+/*
+        Scanner scannerSystem = new Scanner(System.in);         //для ввода с клавиатуры
         System.out.println("Укажите расположение файла c массивом целых чисел:  ");
         String argumentOne = scannerSystem.nextLine();
-//   C:\Users\Владислав\IdeaProjects\PerformanceLab\src\main\java\task4\nums.txt
+//   C:\Users\Владислав\IdeaProjects\PerformanceLab\src\main\java\task4\nums.txt*/
 
+        String argumentOne = args[0];      //считывает первый аргумент
 
         Scanner scanner = new Scanner(new File(argumentOne));
 

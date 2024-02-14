@@ -16,11 +16,20 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import task2.Task2;
 
 public class Task3 {
 
+    static String argumentOne;
+    static String argumentTwo;
+    static String argumentTree;
 
     public static void main(String[] args) throws IOException, ParseException {
+
+        argumentOne = args[0];      //считывает первый аргумент
+        argumentTwo = args[1];      //считывает two аргумент
+        argumentTree = args[2];     //read tree args
+
 
         Values values = new Values();
         values.setValue();
@@ -92,9 +101,9 @@ public class Task3 {
                     TestMore TestMoreGo = (TestMore) tastaStart.tests.get(y);
 
                     for (int b = 0; b < TestMoreGo.getValues().size(); b++) {
-//                   System.out.println(testMoreTwo.getValues());
+//                     System.out.println(TestMoreGo.getValues().size());
                         Test test2 = (Test) TestMoreGo.getValues().get(b);
-
+//                        System.out.println(test2);
                         if ((Objects.equals(valuesArray.getValuesList().get(x).getId(), test2.getId()) == true)) {
                             test2.setValue(valuesArray.getValuesList().get(x).getValue());
 
@@ -158,14 +167,17 @@ class Report {                          // Запись в файл
         String json = ow.writeValueAsString(tastaStart);
 
 
-        Scanner scannerSystem = new Scanner(System.in);                             //ПЕРЕДАЧА АРГУМЕНТА в ручную
+      /*  Scanner scannerSystem = new Scanner(System.in);                             //ПЕРЕДАЧА АРГУМЕНТА в ручную
         System.out.println("Укажите путь для сохранения файла report.json :  ");
         String argumentOne = scannerSystem.nextLine();
         BufferedWriter bw=new BufferedWriter(new FileWriter(argumentOne));
-
+*/
 
         //для тестирования(аргумент)
 //        BufferedWriter bw=new BufferedWriter(new FileWriter("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\report.json"));
+
+        String argumentTree = Task3.argumentTree;
+        BufferedWriter bw=new BufferedWriter(new FileWriter(argumentTree));
         bw.append(json);
         bw.close();
 
@@ -193,16 +205,21 @@ class Values {                          // ПЕРЕОБРАЗОВАНИЕ JSON i
         JSONParser parser = new JSONParser();
 
 
-        Scanner scannerSystem = new Scanner(System.in);                   //ПЕРЕДАЧА АРГУМЕНТА в ручную
+       /* Scanner scannerSystem = new Scanner(System.in);                   //ПЕРЕДАЧА АРГУМЕНТА в ручную
         System.out.println("Укажите расположение файла values.jso:  ");
         String argumentOne = scannerSystem.nextLine();
         JSONObject objectValues = (JSONObject) parser.parse(new FileReader(argumentOne));
         JSONArray values = (JSONArray) objectValues.get("values");
-
+*/
         //для тестирования(аргумент)
-        /*JSONObject objectValues = (JSONObject) parser.parse(new FileReader("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\values.json"));
-        JSONArray values = (JSONArray) objectValues.get("values");*/
+//        JSONObject objectValues = (JSONObject) parser.parse(new FileReader("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\values.json"));
+//        JSONArray values = (JSONArray) objectValues.get("values");
 
+        String argumentOne = Task3.argumentOne;
+        JSONObject objectValues = (JSONObject) parser.parse(new FileReader(argumentOne));
+        JSONArray values = (JSONArray) objectValues.get("values");
+
+//
 //        valuesList.add(objectValues);
 //        JSONArrayValues.add(values);
 
@@ -479,17 +496,22 @@ class Test {                //основной объект на переобр�
 
         JSONParser parser = new JSONParser();
 
-        Scanner scannerSystem = new Scanner(System.in);           //ПЕРЕДАЧА АРГУМЕНТА в ручную
+      /*  Scanner scannerSystem = new Scanner(System.in);           //ПЕРЕДАЧА АРГУМЕНТА в ручную
         System.out.println("Укажите расположение файла tests.json :  ");
         String argumentOne = scannerSystem.nextLine();
 
         JSONObject objectValues = (JSONObject) parser.parse(new FileReader(argumentOne));
-        JSONArray testsJSONArray = (JSONArray) objectValues.get("tests");
+        JSONArray testsJSONArray = (JSONArray) objectValues.get("tests");*/
         //C:\Users\Владислав\IdeaProjects\PerformanceLab\src\main\java\task3\tests.json
 
             //аргумент для тестирования
-       /* JSONObject objectValues = (JSONObject) parser.parse(new FileReader("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\tests.json"));
-        JSONArray testsJSONArray = (JSONArray) objectValues.get("tests");*/
+//        JSONObject objectValues = (JSONObject) parser.parse(new FileReader("C:\\Users\\Владислав\\IdeaProjects\\PerformanceLab\\src\\main\\java\\task3\\tests.json"));
+//        JSONArray testsJSONArray = (JSONArray) objectValues.get("tests");
+
+        String argumentTwo = Task3.argumentTwo;
+        JSONObject objectValues = (JSONObject) parser.parse(new FileReader(argumentTwo));
+        JSONArray testsJSONArray = (JSONArray) objectValues.get("tests");
+
 
 //        ObjectMapper mapper = new ObjectMapper();                 //в текст
 //        String json = mapper.writeValueAsString(objectValues);
@@ -552,7 +574,6 @@ class Test {                //основной объект на переобр�
 
                             JSONArray values4 = (JSONArray) jsonObjectValues3.get("values");             //4 проход
                             tastaList4 = new ArrayList<>();
-
                             if( values4 !=  null) {
 
                                 for (Object c4 : values4) {
@@ -561,7 +582,7 @@ class Test {                //основной объект на переобр�
 
                                     long id4 = (long) jsonObjectValues4.get("id");
 //                System.out.println(id12);
-//
+
                                     String title4 = (String) jsonObjectValues4.get("title");
 //
                                     String value4 = (String) jsonObjectValues4.get("value");
@@ -577,6 +598,7 @@ class Test {                //основной объект на переобр�
 
                             if(values4 == null) {
                                 Test valuesJSON = new Test(id3, title3, value3);
+
                                 tastaList3.add(valuesJSON);
                             } else {
                                 TestMoreMini valuesJSON = new TestMoreMini(id3, title3, tastaList4);
