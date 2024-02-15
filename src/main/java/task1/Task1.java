@@ -33,7 +33,7 @@ public class Task1 {
 //         System.out.println(Arrays.toString(array));
 
         int way = 0;
-        System.out.print("Путь: ");
+        System.out.print("Way: ");
         do{
             System.out.print(array[way]);
             way = (way + m - 1) % n;
