@@ -145,7 +145,7 @@ public class Task3 {
             report.valuesToJSON(tastaStart);
 
         System.out.println( "***********************");
-        System.out.println( "Файл report.json сформирован");
+        System.out.println( "File report.json formed");
         System.out.println( "***********************");
 
 
